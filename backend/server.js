@@ -114,19 +114,7 @@ app.put("/api/productos/:id", async (req, res) => {
   }
 });
 
-// Eliminar un producto
-app.delete("/api/productos/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const [result] = await pool.query("DELETE FROM productos WHERE id = ?", [id]);
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ message: "Producto no encontrado." });
-    }
-    res.json({ message: "Producto eliminado correctamente." });
-  } catch (err) {
-    handleError(res, err, "No se pudo eliminar el Producto.");
-  }
-});
+
 
 // Endpoint de salud
 app.get("/api/health", (req, res) => {
